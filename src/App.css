@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.4;
+    color: #444;
+    background: #fff;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+  
+.inner {
+    width: 100%;
+    padding: 8rem 0px 4rem;
+    display: flex;
+    flex-direction: row;
+}
+
+ul {   
+    list-style-type: none;
+}
+
+.left {
+    display: inline-block;
+    width: 100%;
+}
+
+.header-button,
+.list-button {
+    background-color: #4c05b8;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.4em;
+}
+
+.list-button {
+    width: 7em;
+}
+
+.header-button-clicked,
+.list-button-clicked {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+#create-new-class {
+    width: 2.2em;
+    margin-left: 0.8em;
+}
+
+#lesson-overview {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5em;
+}
+
+#create-class-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100,100,100,0.5);
+}
+
+#create-class-frame {
+    margin: 10% 15% 15%;
+    padding: 4em 4em;
+    width: 70%;
+    height: 70%;
+    background-color: white;
+}
+
+.lesson-item {
+    margin: 0.5em 0;
+}
+
+.lesson-title-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.lesson-title-header button {
+    margin: 0 0 0 2em;
+    padding: 0.5em 0.5em;
+}
+
+.success-criteria-checkbox {
+    margin: 0 1em 0 0;
+}
