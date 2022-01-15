@@ -24,11 +24,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with chemistry basics 1",
 						learningIntentions: "Students will understand the components of a hydogen atom. " +
 																"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -40,11 +40,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with chemistry basics 2",
 						learningIntentions: "Students will understand the components of a hydogen atom." +
 																"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -56,11 +56,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with chemistry basics 3",
 						learningIntentions: "Students will understand the components of a hydogen atom." +
 																"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -80,11 +80,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with biology basics 1",
 						learningIntentions: "Students will understand the components of a hydogen atom." +
 															"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -96,11 +96,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with biology basics 2",
 						learningIntentions: "Students will understand the components of a hydogen atom." +
 															"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -112,11 +112,11 @@ class ClassContainer extends React.Component {
 						description: "Beginning with biology basics 3",
 						learningIntentions: "Students will understand the components of a hydogen atom." +
 															"Students will be introduced to the shells of an atom.",
-						successCriteria: [
-							{id: "successCriteria-1", requirement: "Explained electrons", completed: false, },
-							{id: "successCriteria-2", requirement: "Handout of atom diagram", completed: false, },
-							{id: "successCriteria-3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
-						],
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
 						curriculumLinks: [
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
@@ -148,6 +148,13 @@ class ClassContainer extends React.Component {
 		this.setState({ showCreateClassContainerToggle: open });
 	}
 
+	successCriteriaClick = (classId, lessonId, successCriteriaId, toggleValue) => {
+		this.setState(prevState => {
+			prevState.classes[classId].lessons[lessonId].successCriteria[successCriteriaId].completed = !toggleValue;
+			return { prevState };
+		});
+	}
+
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
 		let selectedLesson = selectedClass.lessons[selectedClass.selectedLesson];
@@ -166,7 +173,11 @@ class ClassContainer extends React.Component {
 							selectedClass={selectedClass}
 							updateSelectedLesson={this.updateSelectedLesson}
 						/>
-						<LessonItem selectedLesson={selectedLesson} />
+						<LessonItem
+							selectedClass={selectedClass}
+							selectedLesson={selectedLesson}
+							successCriteriaClick={this.successCriteriaClick}
+						/>
 					</div>
 				</div>
 				{ this.state.showCreateClassContainerToggle &&

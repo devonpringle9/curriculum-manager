@@ -39,9 +39,14 @@ class LessonItem extends React.Component {
 						<h3>Success Criteria</h3>
 					</div>
 					<ul>
-						{this.props.selectedLesson.successCriteria.map( successCriteria => (
+						{Object.values(this.props.selectedLesson.successCriteria).map( successCriteria => (
 							<li key={successCriteria.id} >
-								<input type="checkbox" className="success-criteria-checkbox" />
+								<input
+									type="checkbox"
+									className="success-criteria-checkbox"
+									checked={successCriteria.completed}
+									onChange={() => this.props.successCriteriaClick(this.props.selectedClass.id, this.props.selectedLesson.id, successCriteria.id, successCriteria.completed)}
+								/>
 								{successCriteria.requirement}
 							</li>
 						))}
