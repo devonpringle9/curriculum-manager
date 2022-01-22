@@ -16,9 +16,9 @@ class ClassContainer extends React.Component {
 				id: "class1",
 				description: "Used for chemistry.",
 				name: "Chemistry",
-				lessons: [
-					{
-						id: "chemistry-lesson1",
+				lessons: {
+					chemistry_lesson1: {
+						id: "chemistry_lesson1",
 						name: "lesson1",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with chemistry basics 1",
@@ -33,8 +33,8 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-					{
-						id: "chemistry-lesson2",
+					chemistry_lesson2: {
+						id: "chemistry_lesson2",
 						name: "lesson2",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with chemistry basics 2",
@@ -49,8 +49,8 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-					{
-						id: "chemistry-lesson3",
+					chemistry_lesson3: {
+						id: "chemistry_lesson3",
 						name: "lesson3",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with chemistry basics 3",
@@ -65,16 +65,16 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-				],
-				selectedLesson: "chemistry-lesson1",
+				},
+				selectedLesson: "chemistry_lesson1",
 				},
 			class2: {
 				id: "class2",
 				description: "Used for biology.",
 				name: "Biology",
-				lessons: [
-					{
-						id: "biology-lesson1",
+				lessons: {
+					biology_lesson1: {
+						id: "biology_lesson1",
 						name: "lesson1",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with biology basics 1",
@@ -89,8 +89,8 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-					{
-						id: "biology-lesson2",
+					biology_lesson2: {
+						id: "biology_lesson2",
 						name: "lesson2",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with biology basics 2",
@@ -105,8 +105,8 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-					{
-						id: "biology-lesson3",
+					biology_lesson3: {
+						id: "biology_lesson3",
 						name: "lesson3",
 						date: "1/1/2022 10:00am",
 						description: "Beginning with biology basics 3",
@@ -121,8 +121,8 @@ class ClassContainer extends React.Component {
 							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
 						],
 					},
-				],
-				selectedLesson: "biology-lesson1",
+				},
+				selectedLesson: "biology_lesson1",
 			},
 		},
 
@@ -150,9 +150,7 @@ class ClassContainer extends React.Component {
 
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
-		let selectedLesson = selectedClass.lessons.find(lesson => {
-			return lesson.id === selectedClass.selectedLesson;
-		})
+		let selectedLesson = selectedClass.lessons[selectedClass.selectedLesson];
 
 		return(
 			<div id="main-container" >

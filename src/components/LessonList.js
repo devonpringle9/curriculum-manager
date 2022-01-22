@@ -12,7 +12,7 @@ class LessonList extends React.Component {
 	render() {
 		return(
 			<ul>
-				{this.props.selectedClass.lessons.map(lesson => (
+				{Object.values(this.props.selectedClass.lessons).map(lesson => (
 					<li key={lesson.id}>
 						<button
 							className={`list-button ${this.isClicked(lesson.id)}`}
