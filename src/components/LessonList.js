@@ -6,7 +6,7 @@ class LessonList extends React.Component {
 		if (this.props.selectedClass.selectedLesson === id) {
 			return "list-button-clicked"
 		}
-		return "adsf"
+		return ""
 	}
 
 	render() {
@@ -16,7 +16,7 @@ class LessonList extends React.Component {
 					<li key={lesson.id}>
 						<button
 							className={`list-button ${this.isClicked(lesson.id)}`}
-							onClick={() => this.props.updateSelectedLesson(lesson.id)}
+							onClick={() => this.props.updateSelectedLesson(lesson.id, this.props.selectedClass["id"])}
 						>
 							{lesson.name}
 						</button>
