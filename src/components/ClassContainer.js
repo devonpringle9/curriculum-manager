@@ -124,6 +124,50 @@ class ClassContainer extends React.Component {
 				},
 				selectedLesson: "biology_lesson1",
 			},
+			class3: {
+				id: "class3",
+				description: "Used for physics.",
+				name: "Physics",
+				lessons: {
+					physics_lesson1: {
+						id: "physics_lesson1",
+						name: "lesson1",
+					},
+					physics_lesson2: {
+						id: "physics_lesson2",
+						name: "lesson2",
+						date: "1/1/2022 10:00am",
+						description: "Beginning with physics basics 2",
+						learningIntentions: "Students will understand the components of a hydogen atom." +
+															"Students will be introduced to the shells of an atom.",
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
+						curriculumLinks: [
+							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
+						],
+					},
+					physics_lesson3: {
+						id: "physics_lesson3",
+						name: "lesson3",
+						date: "1/1/2022 10:00am",
+						description: "Beginning with physics basics 3",
+						learningIntentions: "Students will understand the components of a hydogen atom." +
+															"Students will be introduced to the shells of an atom.",
+						successCriteria: {
+							successCriteria_1: {id: "successCriteria_1", requirement: "Explained electrons", completed: false, },
+							successCriteria_2: {id: "successCriteria_2", requirement: "Handout of atom diagram", completed: false, },
+							successCriteria_3: {id: "successCriteria_3", requirement: "Talk about electrical neutrality of an atom", completed: false, },
+						},
+						curriculumLinks: [
+							{id: "curriculumLink-1", url: "www.link-to-curriculum.com"},
+						],
+					},
+				},
+				selectedLesson: "physics_lesson1",
+			},
 		},
 
 		selectedClass: "class1",
