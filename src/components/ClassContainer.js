@@ -199,6 +199,19 @@ class ClassContainer extends React.Component {
 		});
 	}
 
+	createClass = classData => {
+		this.setState(prevState => {
+			var newClassId = classData.name;
+			var newClassObject = {
+				id: newClassId,
+				name: classData.name,
+				description: classData.description,
+			}
+			prevState.classes[newClassId] = newClassObject;
+			return { prevState };
+		});
+	}
+
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
 		let lessonsAreAvailable = selectedClass.lessons != undefined;
@@ -237,6 +250,7 @@ class ClassContainer extends React.Component {
 					>
 						<CreateClassContainer 
 							showCreateClassContainer={this.showCreateClassContainer}
+							createClass={this.createClass}
 						/>
 					</div>
 				}
