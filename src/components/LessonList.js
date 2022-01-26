@@ -9,10 +9,10 @@ class LessonList extends React.Component {
 		return ""
 	}
 
-	render() {
-		return(
-			<ul>
-				{Object.values(this.props.selectedClass.lessons).map(lesson => (
+	LessonsListElement = () => {
+		if (this.props.selectedClass.lessons != undefined) {
+			return(
+				Object.values(this.props.selectedClass.lessons).map(lesson => (
 					<li key={lesson.id}>
 						<button
 							className={`list-button ${this.isClicked(lesson.id)}`}
@@ -21,7 +21,21 @@ class LessonList extends React.Component {
 							{lesson.name}
 						</button>
 					</li>
-				))}
+				))
+			)
+		} else {
+			return(
+				<li key="no-lessons">
+					No lessons created for this class yet.<br/>Edit the class to add lessons.
+				</li>
+			)
+		}
+	}
+
+	render() {
+		return(
+			<ul>
+				<this.LessonsListElement />
 			</ul>
 		)
 	}

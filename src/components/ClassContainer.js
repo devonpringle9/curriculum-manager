@@ -201,7 +201,13 @@ class ClassContainer extends React.Component {
 
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
-		let selectedLesson = selectedClass.lessons[selectedClass.selectedLesson];
+		let lessonsAreAvailable = selectedClass.lessons != undefined;
+		let selectedLesson;
+		if (lessonsAreAvailable) {
+			selectedLesson = selectedClass.lessons[selectedClass.selectedLesson];
+		} else {
+			selectedLesson = null;
+		}
 
 		return(
 			<div id="main-container" >
@@ -217,11 +223,12 @@ class ClassContainer extends React.Component {
 							selectedClass={selectedClass}
 							updateSelectedLesson={this.updateSelectedLesson}
 						/>
+						{lessonsAreAvailable &&
 						<LessonItem
 							selectedClass={selectedClass}
 							selectedLesson={selectedLesson}
 							successCriteriaClick={this.successCriteriaClick}
-						/>
+						/>}
 					</div>
 				</div>
 				{ this.state.showCreateClassContainerToggle &&
