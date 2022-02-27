@@ -39,7 +39,7 @@ class ClassHeader extends React.Component {
             <button
               className={`header-button`}
               id="create-new-class"
-              onClick={() => this.props.showCreateClassContainer(true)}
+              onClick={() => this.props.createClassButtonAction()}
             >+</button>
           </li>
         </ul>

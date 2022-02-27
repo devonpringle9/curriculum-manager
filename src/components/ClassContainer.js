@@ -3,7 +3,6 @@ import React from "react"
 import ClassHeader from "./ClassHeader"
 import LessonList from "./LessonList"
 import LessonItem from "./LessonItem"
-import CreateClassContainer from "./CreateClassContainer"
 
 //stylesheet
 import "../App.css"
@@ -171,7 +170,6 @@ class ClassContainer extends React.Component {
 		},
 
 		selectedClass: "class1",
-		showCreateClassContainerToggle: false,
 	}
 
 	updateSelectedClass = id => {
@@ -188,26 +186,34 @@ class ClassContainer extends React.Component {
 		});
 	}
 
-	showCreateClassContainer = open => {
-		this.setState({ showCreateClassContainerToggle: open });
+	createNewEmptyClass = () => {
+		/** An empty class should contain as little as possible. It needs to have a unique id. */
+		var newClassObject = {
+			id: "new-id",	// TODO: make this unique
+			name: "new class",
+			selectedLesson: null,
+		}
+		this.setState(prevState => {
+			prevState.classes[newClassObject.id] = newClassObject;
+			return { prevState };
+		});
+		return newClassObject.id;
+	}
+
+	createClassButtonAction = () => {
+		/** The create class button will call this. We need to create an empty class and set this as the
+		 *  focused class.
+		 */
+		var newClassId = this.createNewEmptyClass()
+		this.setState(prevState => {
+			prevState.selectedClass = newClassId;
+			return { prevState };
+		});
 	}
 
 	successCriteriaClick = (classId, lessonId, successCriteriaId, toggleValue) => {
 		this.setState(prevState => {
 			prevState.classes[classId].lessons[lessonId].successCriteria[successCriteriaId].completed = !toggleValue;
-			return { prevState };
-		});
-	}
-
-	createClass = classData => {
-		this.setState(prevState => {
-			var newClassId = classData.name;
-			var newClassObject = {
-				id: newClassId,
-				name: classData.name,
-				description: classData.description,
-			}
-			prevState.classes[newClassId] = newClassObject;
 			return { prevState };
 		});
 	}
@@ -229,31 +235,22 @@ class ClassContainer extends React.Component {
 						classes={this.state.classes}
 						updateSelectedClass={this.updateSelectedClass}
 						selectedClass={this.state.selectedClass}
-						showCreateClassContainer={this.showCreateClassContainer}
+						createClassButtonAction={this.createClassButtonAction}
 					/>
 					<div className="inner" >
 						<LessonList
 							selectedClass={selectedClass}
 							updateSelectedLesson={this.updateSelectedLesson}
 						/>
-						{lessonsAreAvailable &&
-						<LessonItem
-							selectedClass={selectedClass}
-							selectedLesson={selectedLesson}
-							successCriteriaClick={this.successCriteriaClick}
-						/>}
+						{ lessonsAreAvailable &&
+							<LessonItem
+								selectedClass={selectedClass}
+								selectedLesson={selectedLesson}
+								successCriteriaClick={this.successCriteriaClick}
+							/>
+						}
 					</div>
 				</div>
-				{ this.state.showCreateClassContainerToggle &&
-					<div
-						id="create-class-container"
-					>
-						<CreateClassContainer 
-							showCreateClassContainer={this.showCreateClassContainer}
-							createClass={this.createClass}
-						/>
-					</div>
-				}
 			</div>
 		);
 	}
