@@ -211,6 +211,31 @@ class ClassContainer extends React.Component {
 		});
 	}
 
+	createNewEmptyLesson = classId => {
+		/** Create a lesson object and add it to the lessons map in the given class. */
+		var newLessonObject = {
+			id: "new-id",
+			name: "new lesson",
+		}
+		this.setState(prevState => {
+			prevState.classes[classId].lessons[newLessonObject.id] = newLessonObject;
+			prevState.classes[classId].selectedLesson = newLessonObject.id;
+			return { prevState };
+		})
+		return newLessonObject;
+	};
+
+	createLessonButtonAction = classId => {
+		/** The user has chosen to create a new lesson for this class. Setup a lesson object to
+		 * manipulate and have this be the focused lesson.
+		 */
+		var newLessonObject = this.createNewEmptyLesson(classId);
+		this.setState(prevState => {
+			prevState.classes[classId].selectedLesson = newLessonObject.id;
+			return { prevState };
+		})
+	};
+
 	successCriteriaClick = (classId, lessonId, successCriteriaId, toggleValue) => {
 		this.setState(prevState => {
 			prevState.classes[classId].lessons[lessonId].successCriteria[successCriteriaId].completed = !toggleValue;
@@ -241,6 +266,7 @@ class ClassContainer extends React.Component {
 						<LessonList
 							selectedClass={selectedClass}
 							updateSelectedLesson={this.updateSelectedLesson}
+							createLessonAction={this.createLessonButtonAction}
 						/>
 						{ lessonsAreAvailable &&
 							<LessonItem

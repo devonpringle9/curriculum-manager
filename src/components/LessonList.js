@@ -35,6 +35,16 @@ class LessonList extends React.Component {
 	render() {
 		return(
 			<ul>
+				{/* Create lesson button goes at the top */}
+				<li key="create-lesson">
+					<button
+						className={`list-button create-lesson-button`}
+						onClick={() => this.props.createLessonAction(this.props.selectedClass["id"])}
+					>
+						Create Lesson
+					</button>
+				</li>
+				{/* List the lessons down here */}
 				<this.LessonsListElement />
 			</ul>
 		)
