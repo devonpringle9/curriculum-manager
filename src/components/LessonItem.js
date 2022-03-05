@@ -8,7 +8,13 @@ class LessonItem extends React.Component {
 					<h2>
 						{this.props.selectedLesson.name}
 					</h2>
-					<button>edit</button>
+					<button
+						className='lesson-edit-button'
+						onClick={() => this.props.lessonEditButtonAction(this.props.selectedClass.id,
+								this.props.selectedLesson.id)}
+					>
+						edit
+					</button>
 				</div>
 			);
 		} else { return(null); }

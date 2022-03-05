@@ -243,6 +243,13 @@ class ClassContainer extends React.Component {
 		});
 	}
 
+	lessonEditButtonAction = (classId, lessonId) => {
+		this.setState(prevState => {
+			prevState.classes[classId].lessons[lessonId].inEditMode = true;
+			return { prevState };
+		})
+	}
+
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
 		let lessonsAreAvailable = selectedClass.lessons != undefined;
@@ -273,6 +280,7 @@ class ClassContainer extends React.Component {
 								selectedClass={selectedClass}
 								selectedLesson={selectedLesson}
 								successCriteriaClick={this.successCriteriaClick}
+								lessonEditButtonAction={this.lessonEditButtonAction}
 							/>
 						}
 					</div>
