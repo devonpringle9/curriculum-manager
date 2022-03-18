@@ -250,6 +250,22 @@ class ClassContainer extends React.Component {
 		})
 	}
 
+	saveEditLesson = (classId, lessonId, updates) => {
+		this.setState(prevState => {
+			prevState.classes[classId].lessons[lessonId].description = updates.description;
+			// take the lesson out of edit mode
+			prevState.classes[classId].lessons[lessonId].inEditMode = false;
+			return { prevState };
+		})
+	};
+
+	cancelEditLesson = (classId, lessonId) => {
+		this.setState(prevState => {
+			prevState.classes[classId].lessons[lessonId].inEditMode = false;
+			return { prevState };
+		})
+	}
+
 	render() {
 		let selectedClass = this.state.classes[this.state.selectedClass];
 		let lessonsAreAvailable = selectedClass.lessons != undefined;
@@ -281,6 +297,8 @@ class ClassContainer extends React.Component {
 								selectedLesson={selectedLesson}
 								successCriteriaClick={this.successCriteriaClick}
 								lessonEditButtonAction={this.lessonEditButtonAction}
+								saveEditLesson={this.saveEditLesson}
+								cancelEditLesson={this.cancelEditLesson}
 							/>
 						}
 					</div>

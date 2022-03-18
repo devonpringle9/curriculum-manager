@@ -1,6 +1,11 @@
 import React from "react"
 
 class LessonItem extends React.Component {
+
+	state = {
+		description: this.props.selectedLesson.description,
+	}
+
 	TitleField = () => {
 		if (this.props.selectedLesson.hasOwnProperty("name")) {
 			return(
@@ -30,14 +35,38 @@ class LessonItem extends React.Component {
 		} else { return(null); }
 	};
 
+	onChangeText = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
 	DescriptionField = () => {
-		if (this.props.selectedLesson.hasOwnProperty("description")) {
+		if (!this.props.selectedLesson.hasOwnProperty("description")) {
+			// don't add the field when there is no info
+			return(null);
+		};
+
+		if (this.props.selectedLesson.inEditMode) {	// edit the field
+			return(
+				<div className="lesson-item" >
+					<textarea
+						type="text"
+						className="edit-text-input"
+						placeholder="Add description..."
+						value={this.state.description}
+						name="description"
+						onChange={this.onChangeText}
+					/>
+				</div>
+			);
+		} else {
 			return(
 				<div className="lesson-item" >
 					{this.props.selectedLesson.description}
 				</div>
 			);
-		} else { return(null); }
+		};
 	};
 
 	CurriculumLinksField = () => {
@@ -97,15 +126,64 @@ class LessonItem extends React.Component {
 		} else { return(null); }
 	};
 
-	render() {
-		return(
-			<div id="lesson-overview">
+	ViewMode = () => {
+		return (
+			<div>
 				<this.TitleField />
 				<this.DateField />
 				<this.DescriptionField />
 				<this.CurriculumLinksField />
 				<this.LearningIntentionsField />
 				<this.SuccessCriteriaField />
+			</div>
+		);
+	}
+
+	EditMode = () => {
+		return (
+			<div>
+				<form
+					className="edit-lesson"
+					onSubmit={this.onSubmit}
+				>
+					<this.TitleField />
+					<this.DateField />
+					<this.DescriptionField />
+					<this.CurriculumLinksField />
+					<this.LearningIntentionsField />
+					<this.SuccessCriteriaField />
+					<button
+						className="button-cancel"
+						onClick={this.onCancel}
+					>Cancel</button>
+					<button className="button-submit">Submit</button>
+				</form>
+			</div>
+		);
+	}
+
+	onSubmit = e => {
+		e.preventDefault();
+		let updates = this.state;
+		this.props.saveEditLesson(this.props.selectedClass.id, this.props.selectedLesson.id,
+				updates);
+	}
+
+	onCancel = e => {
+		e.preventDefault();
+		this.props.cancelEditLesson(this.props.selectedClass.id, this.props.selectedLesson.id);
+	}
+
+	render() {
+		let inEditMode = this.props.selectedLesson.inEditMode;
+		return(
+			<div id="lesson-overview">
+				{ !inEditMode &&
+					<this.ViewMode />
+				}
+				{ inEditMode &&
+					<this.EditMode />
+				}
 			</div>
 		)
 	}

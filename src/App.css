@@ -83,3 +83,7 @@ ul {
 .success-criteria-checkbox {
     margin: 0 1em 0 0;
 }
+
+.edit-text-input {
+    width: 100%;
+}
