@@ -1,9 +1,10 @@
 import React from "react"
-
+import { v4 as uuidv4 } from "uuid";
 class LessonItem extends React.Component {
 
 	state = {
 		description: this.props.selectedLesson.description,
+		curriculumLinks: this.props.selectedLesson.curriculumLinks,
 	}
 
 	TitleField = () => {
@@ -70,23 +71,74 @@ class LessonItem extends React.Component {
 	};
 
 	CurriculumLinksField = () => {
-		if (this.props.selectedLesson.hasOwnProperty("curriculumLinks")) {
-			return(
-				<div className="lesson-item" >
-					<div className="lesson-item-header" >
-						<h3>Curriculum Links</h3>
+		// Handle no values, multiple values and edit mode for curriculum links. These are hyperlinks
+		// and then input fields when in edit mode.
+		let onChange = (i, e) => {
+			this.setState(prevState => {
+				let updatedLinks = prevState.curriculumLinks
+				updatedLinks[i].url = e.target.value;
+				return { curriculumLinks: updatedLinks }
+			});
+		};
+		if (!this.props.selectedLesson.hasOwnProperty("curriculumLinks")) {
+			// don't add the field when there is no info
+			return(null);
+		} else {
+			if (this.props.selectedLesson.inEditMode) {	// edit the field
+				// Loop through the curriculum links so that we can pass the index to the onChange handler.
+				// Don't create a new function element for this because this will lose focus on every
+				// render.
+				// https://stackoverflow.com/questions/42573017/in-react-es6-why-does-the-input-field-lose-focus-after-typing-a-character
+				let curriculumLinksInputs = [];
+				this.state.curriculumLinks.forEach((link, i) => (
+					curriculumLinksInputs.push(
+						<li key={link.id} id={link.id}>
+							<input
+								type="text"
+								placeholder="Link to curriculum"
+								name="url"
+								value={this.state.curriculumLinks[i].url}
+								onChange={onChange.bind(this, i)}
+							/>
+						</li>
+					)
+				));
+				return(
+					<div className="lesson-item" >
+						<div className="lesson-item-header" >
+							<h3>Curriculum Links</h3>
+						</div>
+						<ul>
+							{curriculumLinksInputs}
+							<button type="button" onClick={this.addNewCurriculumLink}>+</button>
+						</ul>
 					</div>
-					<ul>
-						{this.props.selectedLesson.curriculumLinks.map( curriculumLink => (
-							<li key={curriculumLink.id} >
-								<a href={curriculumLink.url} >{curriculumLink.url}</a>
-							</li>
-						))}
-					</ul>
-				</div>
-			);
-		} else { return(null); }
+				);
+			} else {
+				return(
+					<div className="lesson-item" >
+						<div className="lesson-item-header" >
+							<h3>Curriculum Links</h3>
+						</div>
+						<ul>
+							{this.props.selectedLesson.curriculumLinks.map( curriculumLink => (
+								<li key={curriculumLink.id} >
+									<a href={curriculumLink.url} >{curriculumLink.url}</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				);
+			}
+		}
 	};
+
+	addNewCurriculumLink = () => {
+		this.setState(prevState => {
+			let updatedCurriculumLinks = prevState.curriculumLinks.concat([{id: uuidv4(), url: ""}]);
+			return { curriculumLinks: updatedCurriculumLinks };
+		})
+	}
 
 	LearningIntentionsField = () => {
 		if (this.props.selectedLesson.hasOwnProperty("learningIntentions")) {
@@ -146,12 +198,7 @@ class LessonItem extends React.Component {
 					className="edit-lesson"
 					onSubmit={this.onSubmit}
 				>
-					<this.TitleField />
-					<this.DateField />
-					<this.DescriptionField />
-					<this.CurriculumLinksField />
-					<this.LearningIntentionsField />
-					<this.SuccessCriteriaField />
+					<this.ViewMode />
 					<button
 						className="button-cancel"
 						onClick={this.onCancel}

@@ -253,6 +253,7 @@ class ClassContainer extends React.Component {
 	saveEditLesson = (classId, lessonId, updates) => {
 		this.setState(prevState => {
 			prevState.classes[classId].lessons[lessonId].description = updates.description;
+			prevState.classes[classId].lessons[lessonId].curriculumLinks = updates.curriculumLinks;
 			// take the lesson out of edit mode
 			prevState.classes[classId].lessons[lessonId].inEditMode = false;
 			return { prevState };
