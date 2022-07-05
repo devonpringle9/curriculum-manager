@@ -5,6 +5,7 @@ class LessonItem extends React.Component {
 	state = {
 		description: this.props.selectedLesson.description,
 		curriculumLinks: this.props.selectedLesson.curriculumLinks,
+		learningIntentions: this.props.selectedLesson.learningIntentions,
 	}
 
 	TitleField = () => {
@@ -141,16 +142,34 @@ class LessonItem extends React.Component {
 	}
 
 	LearningIntentionsField = () => {
-		if (this.props.selectedLesson.hasOwnProperty("learningIntentions")) {
+		if (!this.props.selectedLesson.hasOwnProperty("learningIntentions")) {
+			// don't add the field when there is no info
+			return(null);
+		} else {
+			if (this.props.selectedLesson.inEditMode) {
 			return(
 				<div className="lesson-item" >
-					<div className="lesson-item-header" >
-						<h3>Learning Intentions</h3>
-					</div>
-					{this.props.selectedLesson.learningIntentions}
+					<textarea
+						type="text"
+						className="edit-text-input"
+						placeholder="Add learning intentions..."
+						value={this.state.learningIntentions}
+						name="learningIntentions"
+						onChange={this.onChangeText}
+					/>
 				</div>
-			);
-		} else { return(null); }
+			)
+			} else {
+				return(
+					<div className="lesson-item" >
+						<div className="lesson-item-header" >
+							<h3>Learning Intentions</h3>
+						</div>
+						{this.props.selectedLesson.learningIntentions}
+					</div>
+				);
+			}
+		}
 	};
 
 	SuccessCriteriaField = () => {
